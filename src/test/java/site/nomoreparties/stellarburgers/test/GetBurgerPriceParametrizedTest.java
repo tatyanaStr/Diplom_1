@@ -14,16 +14,16 @@ import praktikum.Ingredient;
 
 @RunWith(Parameterized.class)
 public class GetBurgerPriceParametrizedTest {
-    private final int COUNT;
-    private final float BUN_PRICE;
-    private final float INGREDIENT_PRICE;
-    private final float TOTAL_PRICE;
+    private final int count;
+    private final float bunPrice;
+    private final float ingredientPrice;
+    private final float totalPrice;
 
     public GetBurgerPriceParametrizedTest(int count, float bunPrice, float ingredientPrice, float totalPrice) {
-        this.COUNT = count;
-        this.BUN_PRICE = bunPrice;
-        this.INGREDIENT_PRICE = ingredientPrice;
-        this.TOTAL_PRICE = totalPrice;
+        this.count = count;
+        this.bunPrice = bunPrice;
+        this.ingredientPrice = ingredientPrice;
+        this.totalPrice = totalPrice;
     }
 
     @Parameterized.Parameters
@@ -50,11 +50,11 @@ public class GetBurgerPriceParametrizedTest {
         var burger = new Burger();
         burger.setBuns(bun);
 
-        for (int i = 0; i<COUNT; i++) {
+        for (int i = 0; i< count; i++) {
             burger.addIngredient(ingredient);
         }
-        Mockito.when(bun.getPrice()).thenReturn(BUN_PRICE);
-        Mockito.when(ingredient.getPrice()).thenReturn(INGREDIENT_PRICE);
-        Assert.assertEquals("Ошибка в получении стоимости бургера", TOTAL_PRICE, burger.getPrice(), 0.0f);
+        Mockito.when(bun.getPrice()).thenReturn(bunPrice);
+        Mockito.when(ingredient.getPrice()).thenReturn(ingredientPrice);
+        Assert.assertEquals("Ошибка в получении стоимости бургера", totalPrice, burger.getPrice(), 0.0f);
     }
 }
