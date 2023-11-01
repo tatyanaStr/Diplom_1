@@ -7,25 +7,23 @@ import org.junit.runners.Parameterized;
 import praktikum.Bun;
 
 @RunWith(Parameterized.class)
-public class GetPriceParametrizedTest {
+public class GetBunPriceParametrizedTest {
 
     private final float price;
-    private final boolean result;
 
-    public GetPriceParametrizedTest(float price, boolean result) {
+    public GetBunPriceParametrizedTest(float price) {
         this.price = price;
-        this.result = result;
     }
 
     @Parameterized.Parameters
     public static Object[][] getBurgerPrice() {
         return new Object[][]{
-                {30.0f, true},
-                {0, true},
-                {0.01f, true},
-                {9999.99f, true},
-                {10, true},
-                {-0,01f, false}
+                {30.0f},
+                {0},
+                {0.01f},
+                {9999.99f},
+                {10},
+                {-0.01f}
         };
     }
 
@@ -33,6 +31,6 @@ public class GetPriceParametrizedTest {
     public void priceTest(){
         var name = "Name";
         var bun = new Bun(name, price);
-        Assert.assertEquals("Ошибка получения стоимости булочки", bun.getPrice() == price, result);
+        Assert.assertEquals("Ошибка получения стоимости булочки", price, bun.getPrice(), 0.0f);
     }
 }
